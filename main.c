@@ -5,13 +5,14 @@
 int main() {
     srand(time(NULL));
     int target = rand() % 100 + 1;
-    int guess;
+    int guess, attempts = 0;
     printf("Guess a number between 1 and 100\n");
     while (1) {
         printf("Your guess: ");
         scanf("%d", &guess);
+        attempts++;
         if (guess == target) {
-            printf("Correct!\n");
+            printf("Correct! Attempts: %d\n", attempts);
             break;
         } else if (guess < target) {
             printf("Too low\n");
