@@ -9,6 +9,10 @@ int play_round(int max_val) {
     while (1) {
         printf("Your guess: ");
         scanf("%d", &guess);
+        if (guess < 1 || guess > max_val) {
+            printf("Out of range\n");
+            continue;
+        }
         attempts++;
         if (guess == target) {
             printf("Correct! Attempts: %d\n", attempts);
