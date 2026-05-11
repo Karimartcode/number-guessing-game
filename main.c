@@ -25,8 +25,22 @@ int play_round(int max_val) {
     }
 }
 
+int get_difficulty() {
+    int choice;
+    printf("Difficulty:\n1. Easy (1-50)\n2. Medium (1-100)\n3. Hard (1-500)\n");
+    printf("Choice: ");
+    scanf("%d", &choice);
+    switch (choice) {
+        case 1: return 50;
+        case 2: return 100;
+        case 3: return 500;
+        default: return 100;
+    }
+}
+
 int main() {
     srand(time(NULL));
-    play_round(100);
+    int max_val = get_difficulty();
+    play_round(max_val);
     return 0;
 }
