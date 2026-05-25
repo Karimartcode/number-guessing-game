@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+int best_score = -1;
+
 int play_round(int max_val) {
     int target = rand() % max_val + 1;
     int guess, attempts = 0;
@@ -16,6 +18,8 @@ int play_round(int max_val) {
         attempts++;
         if (guess == target) {
             printf("Correct! Attempts: %d\n", attempts);
+            if (best_score == -1 || attempts < best_score)
+                best_score = attempts;
             return attempts;
         } else if (guess < target) {
             printf("Too low\n");
@@ -40,7 +44,14 @@ int get_difficulty() {
 
 int main() {
     srand(time(NULL));
-    int max_val = get_difficulty();
-    play_round(max_val);
+    char again;
+    do {
+        int max_val = get_difficulty();
+        play_round(max_val);
+        if (best_score > 0)
+            printf("Best score: %d\n", best_score);
+        printf("Play again? (y/n): ");
+        scanf(" %c", &again);
+    } while (again == 'y' || again == 'Y');
     return 0;
 }
